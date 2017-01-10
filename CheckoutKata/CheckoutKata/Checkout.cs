@@ -24,6 +24,7 @@ namespace CheckoutKata
         {
             var total = 0;
             var CountA = 0;
+            var CountB = 0;
 
             foreach (var code in Codes)
             {
@@ -32,8 +33,17 @@ namespace CheckoutKata
                 {
                     CountA ++;
                 }
+                if (code.Equals("B"))
+                {
+                    CountB++;
+                }
 
                 if (CountA == 3)
+                {
+                    total-= 15;
+                }
+
+                if (CountB == 2)
                 {
                     total-= 15;
                 }
