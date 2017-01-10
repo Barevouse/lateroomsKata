@@ -25,7 +25,6 @@ namespace CheckoutKata
 
         [TestCase("A", "A", 100)]
         [TestCase("A", "B", 80)]
-        [TestCase("B", "B", 60)]
         [TestCase("C", "D", 35)]
         public void ScanMultipleItemsReturnsCombinedValue(string val1, string val2, int expected)
         {
@@ -38,6 +37,7 @@ namespace CheckoutKata
         [TestCase("A", 3, 135)]
         [TestCase("B", 2, 45)]
         [TestCase("A", 6, 270)]
+        [TestCase("B", 4, 70)]
         public void ShouldApplyDiscountsIfMultipleValuesPassedThrough(string value, int times, int expected)
         {
             for (var i = 0; i < times; i++)
