@@ -35,23 +35,16 @@ namespace CheckoutKata
             Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
         }
 
-        [Test]
-        public void ShouldCost130IfThreeAvaluesScancced()
+        [TestCase("A", 3, 135)]
+        [TestCase("B", 2, 45)]
+        public void ShouldApplyDiscountsIfMultipleValuesPassedThrough(string value, int times, int expected)
         {
-            _checkout.ScanItem("A");
-            _checkout.ScanItem("A");
-            _checkout.ScanItem("A");
+            for (var i = 0; i < times; i++)
+            {
+                _checkout.ScanItem(value);
+            }
 
-            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(135));
-        }
-
-        [Test]
-        public void ShouldCost45If2BvaluesScancced()
-        {
-            _checkout.ScanItem("B");
-            _checkout.ScanItem("B");
-
-            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(45));
+            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
         }
     }
 }
