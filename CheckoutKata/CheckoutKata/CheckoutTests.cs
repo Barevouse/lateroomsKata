@@ -34,5 +34,15 @@ namespace CheckoutKata
 
             Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
         }
+
+        [Test]
+        public void ShouldCost130IfThreeAvaluesScancced()
+        {
+            _checkout.ScanItem("A");
+            _checkout.ScanItem("A");
+            _checkout.ScanItem("A");
+
+            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(135));
+        }
     }
 }
