@@ -22,9 +22,14 @@ namespace CheckoutKata
 
         public int GetTotalPrice()
         {
-            var value = PriceGuide[Codes[0]];
+            var total = 0;
 
-            return value;
+            foreach (var code in Codes)
+            {
+                total += PriceGuide[code];
+            }
+
+            return total;
         }
     }
 }
