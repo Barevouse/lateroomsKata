@@ -22,5 +22,14 @@ namespace CheckoutKata
 
             Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
         }
+
+        [TestCase("A", "A", 100)]
+        public void ScanMultipleItemsReturnsCombinedValue(string val1, string val2, int expected)
+        {
+            _checkout.ScanItem(val1);
+            _checkout.ScanItem(val2);
+
+            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
+        }
     }
 }
