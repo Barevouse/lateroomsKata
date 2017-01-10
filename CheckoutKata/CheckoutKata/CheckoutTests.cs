@@ -14,6 +14,8 @@ namespace CheckoutKata
 
         [TestCase("A", 50)]
         [TestCase("B", 30)]
+        [TestCase("C", 20)]
+        [TestCase("D", 15)]
         public void ScanASingleItemAReturnsTheItemValue(string SKU, int expected)
         {
             _checkout.ScanItem(SKU);
