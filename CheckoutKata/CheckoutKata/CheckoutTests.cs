@@ -12,12 +12,13 @@ namespace CheckoutKata
             _checkout = new Checkout();       
         }
 
-        [Test]
-        public void ScanItemAReturns50()
+        [TestCase("A", 50)]
+        [TestCase("B", 30)]
+        public void ScanASingleItemAReturnsTheItemValue(string SKU, int expected)
         {
-            _checkout.ScanItem("A");
+            _checkout.ScanItem(SKU);
 
-            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(50));
+            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
         }
     }
 }
