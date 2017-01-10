@@ -35,7 +35,7 @@ namespace CheckoutKata
 
                 if (CountA == 3)
                 {
-                    total = 135;
+                    total-= 15;
                 }
             }
 
