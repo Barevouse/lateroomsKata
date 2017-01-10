@@ -37,7 +37,7 @@ namespace CheckoutKata
         [TestCase("A", 3, 135)]
         [TestCase("B", 2, 45)]
         [TestCase("A", 6, 270)]
-        [TestCase("B", 4, 70)]
+        [TestCase("B", 4, 90)]
         public void ShouldApplyDiscountsIfMultipleValuesPassedThrough(string value, int times, int expected)
         {
             for (var i = 0; i < times; i++)
