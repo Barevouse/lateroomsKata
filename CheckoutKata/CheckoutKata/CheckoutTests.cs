@@ -24,6 +24,9 @@ namespace CheckoutKata
         }
 
         [TestCase("A", "A", 100)]
+        [TestCase("A", "B", 80)]
+        [TestCase("B", "B", 60)]
+        [TestCase("C", "D", 35)]
         public void ScanMultipleItemsReturnsCombinedValue(string val1, string val2, int expected)
         {
             _checkout.ScanItem(val1);
