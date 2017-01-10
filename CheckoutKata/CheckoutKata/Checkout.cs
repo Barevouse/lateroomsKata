@@ -16,10 +16,18 @@ namespace CheckoutKata
             {
                 return 50;
             }
-            else
+
+            if(Codes[0] == "B")
             {
                 return 30;
             }
+
+            if (Codes[0] == "C")
+            {
+                return 20;
+            }
+
+            return 15;
         }
     }
 }
