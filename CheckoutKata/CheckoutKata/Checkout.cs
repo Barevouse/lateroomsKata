@@ -5,6 +5,16 @@ namespace CheckoutKata
     public class Checkout : ICheckout
     {
         public List<string> Codes = new List<string>();
+        public Dictionary<string, int> PriceGuide = new Dictionary<string, int>();
+
+        public Checkout()
+        {
+            PriceGuide.Add("A", 50);
+            PriceGuide.Add("B", 30);
+            PriceGuide.Add("C", 20);
+            PriceGuide.Add("D", 15);
+        }
+
         public void ScanItem(string SKU)
         {
             Codes.Add(SKU);
@@ -12,22 +22,9 @@ namespace CheckoutKata
 
         public int GetTotalPrice()
         {
-            if (Codes[0] == "A")
-            {
-                return 50;
-            }
+            var value = PriceGuide[Codes[0]];
 
-            if(Codes[0] == "B")
-            {
-                return 30;
-            }
-
-            if (Codes[0] == "C")
-            {
-                return 20;
-            }
-
-            return 15;
+            return value;
         }
     }
 }
