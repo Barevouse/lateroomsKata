@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace CheckoutKata
 {
@@ -9,7 +10,12 @@ namespace CheckoutKata
         [SetUp]
         public void setup()
         {
-            _checkout = new Checkout();       
+            var priceRules = new Dictionary<string, int>();
+            priceRules.Add("A", 50);
+            priceRules.Add("B", 30);
+            priceRules.Add("C", 20);
+            priceRules.Add("D", 15);
+            _checkout = new Checkout(priceRules);       
         }
 
         [TestCase("A", 50)]

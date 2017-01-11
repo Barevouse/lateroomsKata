@@ -5,14 +5,11 @@ namespace CheckoutKata
     public class Checkout : ICheckout
     {
         public List<string> Codes = new List<string>();
-        public Dictionary<string, int> PriceGuide = new Dictionary<string, int>();
+        public Dictionary<string, int> PriceGuide;
 
-        public Checkout()
+        public Checkout(Dictionary<string, int> priceGuide)
         {
-            PriceGuide.Add("A", 50);
-            PriceGuide.Add("B", 30);
-            PriceGuide.Add("C", 20);
-            PriceGuide.Add("D", 15);
+            PriceGuide = priceGuide;
         }
 
         public void ScanItem(string SKU)
