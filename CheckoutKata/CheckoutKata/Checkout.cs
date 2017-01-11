@@ -1,15 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CheckoutKata
 {
     public class Checkout : ICheckout
     {
-        public List<string> Codes = new List<string>();
-        public Dictionary<string, int> PriceGuide;
-
-        public Checkout(Dictionary<string, int> priceGuide)
+        public class PriceRule
         {
-            PriceGuide = priceGuide;
+            public string Code { get; set; }
+            public int Cost { get; set; }
+            public int DiscountAmount { get; set; }
+            public int Discount { get; set; }
+        }
+
+        public List<string> Codes = new List<string>();
+        public List<PriceRule> Rules;
+
+        public Checkout(List<PriceRule> priceRule)
+        {
+            Rules = priceRule;
         }
 
         public void ScanItem(string SKU)
@@ -20,31 +29,15 @@ namespace CheckoutKata
         public int GetTotalPrice()
         {
             var total = 0;
-            var CountA = 0;
-            var CountB = 0;
 
-            foreach (var code in Codes)
+            foreach (var rule in Rules)
             {
-                total += PriceGuide[code];
-                if (code.Equals("A"))
+                var numberOfCode = Codes.Count(x => x == rule.Code);
+                total += numberOfCode*rule.Cost;
+                if (rule.DiscountAmount > 0)
                 {
-                    CountA ++;
-                }
-                if (code.Equals("B"))
-                {
-                    CountB++;
-                }
-
-                if (CountA == 3)
-                {
-                    total-= 15;
-                    CountA = 0;
-                }
-
-                if (CountB == 2)
-                {
-                    total-= 15;
-                    CountB = 0;
+                    var discountTimes = numberOfCode/rule.DiscountAmount;
+                    total -= discountTimes*rule.Discount;
                 }
             }
 

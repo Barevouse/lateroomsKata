@@ -10,12 +10,33 @@ namespace CheckoutKata
         [SetUp]
         public void setup()
         {
-            var priceRules = new Dictionary<string, int>();
-            priceRules.Add("A", 50);
-            priceRules.Add("B", 30);
-            priceRules.Add("C", 20);
-            priceRules.Add("D", 15);
-            _checkout = new Checkout(priceRules);       
+            var rules = new List<Checkout.PriceRule>();
+            rules.Add(new Checkout.PriceRule
+            {
+               Code = "A",
+               Cost = 50,
+               Discount = 15,
+               DiscountAmount = 3
+            });
+            rules.Add(new Checkout.PriceRule
+            {
+               Code = "B",
+               Cost = 30,
+               Discount = 15,
+               DiscountAmount = 2
+            });
+            rules.Add(new Checkout.PriceRule
+            {
+               Code = "C",
+               Cost = 20
+            });
+            rules.Add(new Checkout.PriceRule
+            {
+               Code = "D",
+               Cost = 15
+            });
+
+            _checkout = new Checkout(rules);       
         }
 
         [TestCase("A", 50)]
