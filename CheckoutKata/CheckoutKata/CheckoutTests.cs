@@ -74,5 +74,24 @@ namespace CheckoutKata
 
             Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
         }
+
+        [TestCase("A", 3, "B", 1, 165)]
+        [TestCase("B", 2, "C", 1, 65)]
+        public void ShouldApplyDiscountsIfMultipleValuesPassedThroughWithMultipleCodes(string value, int times, string value2, int value2times, int expected)
+        {
+            for (var i = 0; i < times; i++)
+            {
+                _checkout.ScanItem(value);
+            }
+
+            for (var i = 0; i < value2times; i++)
+            {
+                _checkout.ScanItem(value2);
+            }
+
+
+
+            Assert.That(_checkout.GetTotalPrice(), Is.EqualTo(expected));
+        }
     }
 }
